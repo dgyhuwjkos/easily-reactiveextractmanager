@@ -1,18 +1,10 @@
-function detectCycle(head) {
-  let slow = head;
-  let fast = head;
-  while (fast && fast.next) {
-    slow = slow.next;
-    fast = fast.next.next;
-    if (slow === fast) {
-      let p1 = head;
-      let p2 = slow;
-      while (p1 !== p2) {
-        p1 = p1.next;
-        p2 = p2.next;
-      }
-      return p1;
+function removeDuplicates(nums) {
+  let index = 0;
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] !== nums[index]) {
+      index++;
+      nums[index] = nums[i];
     }
   }
-  return null;
+  return index + 1;
 }
