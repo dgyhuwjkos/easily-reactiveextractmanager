@@ -1,10 +1,12 @@
-function removeDuplicates(nums) {
+const gnomeSort = (arr) => {
   let index = 0;
-  for (let i = 1; i < nums.length; i++) {
-    if (nums[i] !== nums[index]) {
+  while (index < arr.length) {
+    if (index === 0 || arr[index] >= arr[index - 1]) {
       index++;
-      nums[index] = nums[i];
+    } else {
+      [arr[index], arr[index - 1]] = [arr[index - 1], arr[index]];
+      index--;
     }
   }
-  return index + 1;
-}
+  return arr;
+};
