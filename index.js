@@ -1,12 +1,20 @@
-const gnomeSort = (arr) => {
-  let index = 0;
-  while (index < arr.length) {
-    if (index === 0 || arr[index] >= arr[index - 1]) {
-      index++;
-    } else {
-      [arr[index], arr[index - 1]] = [arr[index - 1], arr[index]];
-      index--;
+function detectCycle(head) {
+  let slow = head;
+  let fast = head;
+  let hasCycle = false;
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if (slow === fast) {
+      hasCycle = true;
+      break;
     }
   }
-  return arr;
-};
+  if (!hasCycle) return null;
+  slow = head;
+  while (slow !== fast) {
+    slow = slow.next;
+    fast = fast.next;
+  }
+  return slow;
+}
